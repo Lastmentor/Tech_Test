@@ -1,0 +1,48 @@
+<h1 class="display-4 text-center">Checkout</h1>
+<ng-container *ngIf="checkOutList.length > 0; else newDeb" >
+    <table class="table table-hover mt-5">
+        <thead>
+            <tr>
+            <th *ngFor="let head of service.headElements" scope="col">{{head}}</th>
+            </tr>
+        </thead>
+        <tbody>            
+            <tr *ngFor="let item of checkOutList; let i = index">
+                <td>{{item.name}}</td>
+                <td>{{item.category}}</td>
+                <td>${{item.price}}</td>
+                <td><i class="fas fa-trash-alt" style="color: red;" (click)="removeFromBasket(i)"></i></td>
+            </tr>
+        </tbody>
+        <tfoot>
+            <tr>
+                <th style="text-align:right;" colspan="2">Shipping Cost :</th>
+                <td>${{service.shippingCost}}</td> 
+                <td></td>
+            </tr>
+            <tr>                                                  
+                <th style="text-align:right;" colspan="2">Subtotal :</th>
+                <td>${{currentPrice}}</td>
+                <td></td>                                     
+            </tr> 
+            <tr>                                                  
+                <th style="text-align:right;" colspan="2">Total :</th>
+                <td>${{currentPrice + service.shippingCost}}</td>
+                <td></td>                                     
+            </tr>            
+        </tfoot>
+    </table>
+    <div class="text-center">
+        <div class="btn-group">            
+            <button (click)="backClicked()" class="btn btn-outline-primary">Order More</button>
+            <button (click)="confirmOrder()" class="btn btn-outline-success">Place Order</button>
+        </div>        
+    </div>    
+</ng-container>
+<ng-template #newDeb>
+    <div class="text-center">
+        <h3 class="text-center mt-5">There are no items in your basket</h3>
+        <h4 class="text-center">Start adding now</h4>
+        <button (click)="navigateProducts()" class="btn btn-outline-success mt-4">Products</button>
+    </div>    
+</ng-template>

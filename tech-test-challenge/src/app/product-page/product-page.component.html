@@ -1,0 +1,16 @@
+<h1 class="display-4 text-center">Products</h1>
+<table class="table table-hover mt-5">
+    <thead>
+        <tr>
+        <th *ngFor="let head of service.headElements" scope="col">{{head}}</th>
+        </tr>
+    </thead>
+    <tbody>            
+        <tr *ngFor="let item of service.list">
+            <td>{{item.name}}</td>
+            <td>{{item.category}}</td>
+            <td>${{item.price}}</td>
+            <td><i class="fas fa-plus" style="color: green;" (click)="addToBasket(item)"></i></td>
+        </tr>
+    </tbody>
+</table>
